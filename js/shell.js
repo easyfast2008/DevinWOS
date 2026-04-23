@@ -128,7 +128,7 @@
 
   // ---------- start menu ----------
   function pinnedOrder() {
-    return ["notepad","calculator","paint","explorer","browser","terminal","clock","camera","mediaplayer","photos","settings","minesweeper","solitaire","gta","about"];
+    return ["notepad","calculator","paint","explorer","browser","terminal","clock","camera","mediaplayer","photos","settings","minesweeper","solitaire","gta","snake","about"];
   }
   function refreshStartMenu(filter = "") {
     const pinned = $("#startPinned");
@@ -295,10 +295,13 @@
     $("#tbStart").addEventListener("click", (e) => { e.stopPropagation(); toggleStart(); });
     $("#tbSearch").addEventListener("click", () => { openStart(); $("#startSearch").focus(); });
     $("#tbTaskView").addEventListener("click", () => {
-      const wins = DO.WM.windows();
-      if (!wins.length) { DO.toast("Task view", "No windows open."); return; }
-      const allMin = wins.every(w => w.minimized);
-      wins.forEach(w => allMin ? w.restore() : w.minimize());
+      if (DO.TaskView && DO.TaskView.open) DO.TaskView.open();
+      else {
+        const wins = DO.WM.windows();
+        if (!wins.length) { DO.toast("Task view", "No windows open."); return; }
+        const allMin = wins.every(w => w.minimized);
+        wins.forEach(w => allMin ? w.restore() : w.minimize());
+      }
     });
     $("#tbClock").addEventListener("click", () => { closeStart(); toggleQuick(); });
     $("#tbTray").addEventListener("click", () => { closeStart(); toggleQuick(); });

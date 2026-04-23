@@ -34,6 +34,7 @@ Open `index.html` in any modern browser and sign in (any PIN, or just press Ente
 ### Games
 - **Minesweeper** – Easy / Medium / Hard
 - **Solitaire** – Klondike draw-one with undo and score/time
+- **Snake** – classic grid snake with difficulty, wrap-around, and persistent high score
 - **Grand Theft Web** – a top-down 2D open-city sandbox:
   - Drive any of ~24 vehicles, hijack them by kicking out the driver with `E`
   - 70+ wandering pedestrians who panic and flee
@@ -52,7 +53,13 @@ Wired into:
 - Paint (every stroke of your canvas)
 - Grand Theft Web (yes, you can **un-die** after a shootout)
 
-Everything is persisted in `localStorage`: settings, virtual file system, notifications, alarms.
+### Extras
+- **Widgets flyout** (Win+W or click the weather pill at the left of the taskbar) — weather, calendar, live system stats, and quote of the day
+- **Run dialog** (Win+R) — launch any app by name, just like real Windows
+- **Task View overlay** (Win+Tab / Ctrl+Shift+Esc / taskbar Task View button) — visual grid of every open window
+- **Global keyboard shortcuts** — Win+E (Files), Win+D (show/hide desktop), Win+R (Run), Win+W (Widgets), Win+L (Lock), Win+Tab (Task view)
+
+Everything is persisted in `localStorage`: settings, virtual file system, notifications, alarms, Snake high score.
 
 ## Development
 

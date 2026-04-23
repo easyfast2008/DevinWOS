@@ -24,8 +24,15 @@
 
   function sw(value, onChange) {
     const s = el("div", { class: "switch" + (value ? " on" : ""), tabIndex: 0 });
-    s.addEventListener("click", () => { onChange(!s.classList.contains("on")); });
-    s.addEventListener("keydown", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); onChange(!s.classList.contains("on")); } });
+    const toggle = () => {
+      const next = !s.classList.contains("on");
+      s.classList.toggle("on", next);
+      onChange(next);
+    };
+    s.addEventListener("click", toggle);
+    s.addEventListener("keydown", (e) => {
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(); }
+    });
     return s;
   }
 
