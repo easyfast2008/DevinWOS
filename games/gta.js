@@ -160,7 +160,8 @@
         const p = randRoadPos();
         pickups.push({ x: p.x, y: p.y, kind: Math.random() < 0.5 ? "cash" : "ammo" });
       }
-      pickups.push({ x: player.x + 50, y: player.y + 50, kind: "pistol" });
+      pickups.push({ x: player.x + 30, y: player.y + 18, kind: "pistol" });
+      pickups.push({ x: player.x - 30, y: player.y + 18, kind: "ammo" });
 
       let mission = null;
       let msgT = null;
