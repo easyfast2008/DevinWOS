@@ -209,7 +209,7 @@
     host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Edition"), el("div", {}, "DevinWOS Home")));
     host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Processor"), el("div", {}, "Your browser")));
     host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Installed RAM"), el("div", {}, (navigator.deviceMemory || "?") + " GB")));
-    host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Cores"), el("div", {}, navigator.hardwareConcurrency || "?")));
+    host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Cores"), el("div", {}, String(navigator.hardwareConcurrency || "?"))));
     host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Device name"), el("div", {}, "DEVIN-PC")));
     host.appendChild(el("div", { class: "about-row" }, el("div", { class: "k" }, "Engine"), el("div", {}, navigator.userAgent.split(" ").slice(-2).join(" "))));
   }
