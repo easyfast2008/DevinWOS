@@ -282,4 +282,10 @@
 .about-badge {
   display: inline-flex; align-items: center; gap: 6px;
   background: var(--accent); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 12px;
+  margin-bottom: 10px;
+}
+.settings-main kbd, .about kbd {
+  display: inline-block; padding: 1px 6px; border: 1px solid var(--stroke-strong);
+  border-radius: 4px; background: var(--bg-2); font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 11px; color: var(--text);
 }

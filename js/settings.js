@@ -186,8 +186,16 @@
   }
 
   function renderAbility(host, s) {
-    host.appendChild(el("p", { style: { color: "var(--text-dim)", fontSize: "13px" } },
-      "Chronoshift records the state of every rewind-aware app (Notepad, Paint, GTA clone) and lets you scrub time backwards. Activate anywhere with Ctrl+Alt+R, or from the quick settings panel."));
+    host.appendChild(el("div", { class: "about-badge" }, "Signature ability · Chronoshift"));
+    host.appendChild(el("p", { style: { color: "var(--text-dim)", fontSize: "13px", lineHeight: "1.6" } },
+      "Chronoshift is DevinWOS' signature superpower. Every rewind-aware app (Notepad, Paint, Grand Theft Web) takes a tiny state snapshot four times a second. Activate with ",
+      el("kbd", {}, "Ctrl+Alt+R"),
+      " or the Rewind tile in the quick panel, and the whole system freezes behind a glitch overlay with a scrubber. Drag backwards to see your typing, drawings, or GTA run unwind frame-by-frame. Release with ",
+      el("kbd", {}, "Enter"),
+      " to commit the rewind, or ",
+      el("kbd", {}, "Esc"),
+      " to cancel. Great for recovering from crashes, bad brush strokes, or a particularly rough shootout."
+    ));
     host.appendChild(row("Maximum rewind time",
       (() => {
         const sel = el("select", {
