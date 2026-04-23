@@ -20,9 +20,9 @@
   font-weight: 700; font-size: 14px; cursor: default;
   font-family: "Cascadia Code", Consolas, monospace;
 }
-.mines-cell.hidden { background: linear-gradient(145deg, #3a3f4c, #2a2f3b); color: transparent; border-color: rgba(0,0,0,0.3); }
-[data-theme="light"] .mines-cell.hidden { background: linear-gradient(145deg, #dfe3ea, #b9c1cc); }
-.mines-cell.hidden:hover { filter: brightness(1.12); }
+.mines-cell.covered { background: linear-gradient(145deg, #50566a, #363b4a); color: transparent; border-color: rgba(0,0,0,0.35); }
+[data-theme="light"] .mines-cell.covered { background: linear-gradient(145deg, #dfe3ea, #b9c1cc); }
+.mines-cell.covered:hover { filter: brightness(1.18); }
 .mines-cell.flag::before { content: "⚑"; color: #e4453d; }
 .mines-cell.mine { background: #e4453d; color: #fff; }
 .mines-cell[data-n="1"] { color: #2d6cdf; }

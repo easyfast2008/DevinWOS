@@ -132,7 +132,7 @@
         for (let y=0;y<H;y++) for (let x=0;x<W;x++) {
           const c = el("div", { class: "mines-cell" });
           if (!opened[y][x]) {
-            c.classList.add("hidden");
+            c.classList.add("covered");
             if (flags[y][x]) c.classList.add("flag");
           } else {
             if (grid[y][x] === -1) { c.classList.add("mine"); c.textContent = "💣"; }
