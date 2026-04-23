@@ -1,5 +1,5 @@
-/* Main entrypoint (placeholder — shell.js handles boot). */
+/* Main entrypoint — ensures core state is hydrated before shell boots. */
 (function () {
   "use strict";
-  // Everything is wired in shell.js/wm.js/apps. Nothing to do here for now.
+  if (window.DevinOS && DevinOS.FS) DevinOS.FS.load();
 })();

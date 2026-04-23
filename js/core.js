@@ -355,4 +355,5 @@
 
   // ---------- apply saved settings early ----------
   applySettings(Settings.get());
+  FS.load();
 })();
