@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>DevinWOS — A Web Desktop</title>
+<meta name="description" content="A Windows 11 inspired desktop OS built in pure HTML, CSS, and JavaScript. Apps, games, and a time-rewind superpower." />
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet" href="css/shell.css" />
+<link rel="stylesheet" href="css/window.css" />
+<link rel="stylesheet" href="css/apps.css" />
+<link rel="stylesheet" href="css/games.css" />
+</head>
+<body data-theme="dark" data-accent="blue">
+  <!-- Boot / lock screen -->
+  <div id="boot" class="boot">
+    <div class="boot-logo" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="64" height="64"><path d="M4 8 L30 4 L30 30 L4 30 Z M34 4 L60 0 L60 30 L34 30 Z M4 34 L30 34 L30 60 L4 56 Z M34 34 L60 34 L60 64 L34 60 Z" fill="currentColor"/></svg>
+    </div>
+    <div class="boot-spinner"><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
+
+  <div id="lock" class="lock hidden">
+    <div class="lock-bg"></div>
+    <div class="lock-content">
+      <div class="lock-time" id="lockTime">12:00</div>
+      <div class="lock-date" id="lockDate">Monday, January 1</div>
+      <div class="lock-hint">Press any key or click to unlock</div>
+    </div>
+  </div>
+
+  <div id="login" class="login hidden">
+    <div class="login-bg"></div>
+    <div class="login-card">
+      <div class="login-avatar">D</div>
+      <div class="login-name">Devin</div>
+      <form id="loginForm" autocomplete="off">
+        <input type="password" id="loginPin" placeholder="PIN (any)" maxlength="12" />
+        <button type="submit">Sign in</button>
+      </form>
+      <div class="login-hint">Tip: just press Enter</div>
+    </div>
+    <div class="login-tray">
+      <button id="loginPower" title="Power"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3v9m-6.4-6.4a9 9 0 1 0 12.8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- Desktop -->
+  <div id="desktop" class="desktop hidden">
+    <div id="wallpaper" class="wallpaper"></div>
+    <div id="desktopIcons" class="desktop-icons"></div>
+    <div id="windows" class="windows"></div>
+    <div id="selectionBox" class="selection-box hidden"></div>
+
+    <!-- Start menu -->
+    <div id="startMenu" class="start-menu hidden" role="dialog" aria-label="Start">
+      <div class="start-search">
+        <svg viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="startSearch" placeholder="Type here to search" />
+      </div>
+      <div class="start-section">
+        <div class="start-section-head">Pinned</div>
+        <div id="startPinned" class="start-grid"></div>
+      </div>
+      <div class="start-section">
+        <div class="start-section-head">All apps</div>
+        <div id="startAll" class="start-grid start-grid-all"></div>
+      </div>
+      <div class="start-footer">
+        <div class="start-user"><span class="start-avatar">D</span><span>Devin</span></div>
+        <div class="start-power">
+          <button id="btnLock" title="Lock"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button id="btnPower" title="Restart"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3v9m-6.4-6.4a9 9 0 1 0 12.8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification / quick settings panel -->
+    <div id="quickPanel" class="quick-panel hidden" role="dialog" aria-label="Quick settings">
+      <div class="quick-tiles">
+        <button class="qt" data-qt="wifi"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/></svg><span>Wi-Fi</span></button>
+        <button class="qt" data-qt="bluetooth"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 6l8 6-8 6V2l8 8-8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Bluetooth</span></button>
+        <button class="qt" data-qt="focus"><svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Focus</span></button>
+        <button class="qt" data-qt="mute"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/></svg><span>Sound</span></button>
+        <button class="qt" data-qt="theme"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z" fill="currentColor"/></svg><span>Theme</span></button>
+        <button class="qt" data-qt="rewind"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M11 5L4 12l7 7v-4a6 6 0 1 1-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Rewind</span></button>
+      </div>
+      <div class="quick-slider">
+        <label>Brightness
+          <input type="range" id="qBrightness" min="40" max="100" value="100" />
+        </label>
+        <label>Volume
+          <input type="range" id="qVolume" min="0" max="100" value="60" />
+        </label>
+      </div>
+      <div class="quick-notifs" id="qNotifs"></div>
+      <div class="quick-foot" id="qFoot"></div>
+    </div>
+
+    <!-- Context menu -->
+    <div id="ctxMenu" class="ctx-menu hidden" role="menu"></div>
+
+    <!-- Rewind overlay -->
+    <div id="rewindOverlay" class="rewind-overlay hidden">
+      <div class="rewind-grid"></div>
+      <div class="rewind-ui">
+        <div class="rewind-title">TIME REWIND</div>
+        <div class="rewind-sub" id="rewindSub">Hold Space to scrub · Release to resume · R to exit</div>
+        <input type="range" id="rewindBar" min="0" max="100" value="100" />
+        <div class="rewind-hint">Ability: <b>Chronoshift</b> — snapshots the active app state and lets you scrub up to 30 seconds back in time. Release to rewrite reality.</div>
+      </div>
+    </div>
+
+    <!-- Toasts -->
+    <div id="toasts" class="toasts"></div>
+
+    <!-- Taskbar -->
+    <div id="taskbar" class="taskbar" data-align="center">
+      <div class="tb-left" id="tbLeft"></div>
+      <div class="tb-center" id="tbCenter">
+        <button class="tb-btn tb-start" id="tbStart" title="Start">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 5 L11 3.5 V11 H3 Z M13 3.2 L21 2 V11 H13 Z M3 13 H11 V20.5 L3 19 Z M13 13 H21 V22 L13 20.8 Z" fill="currentColor"/></svg>
+        </button>
+        <button class="tb-btn" id="tbSearch" title="Search">
+          <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="tb-btn" id="tbTaskView" title="Task view">
+          <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="4" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="4" width="8" height="8" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="8" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="14" width="8" height="6" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <div class="tb-apps" id="tbApps"></div>
+      </div>
+      <div class="tb-right" id="tbRight">
+        <button class="tb-tray" id="tbTray" title="Quick settings">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="19" r="1.3" fill="currentColor"/></svg>
+          <svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/></svg>
+          <svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 7h16M4 12h10M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </button>
+        <button class="tb-clock" id="tbClock" title="Notifications">
+          <div id="tbTime">--:--</div>
+          <div id="tbDate">--/--/----</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/core.js"></script>
+  <script src="js/rewind.js"></script>
+  <script src="js/wm.js"></script>
+  <script src="js/shell.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="apps/notepad.js"></script>
+  <script src="apps/calculator.js"></script>
+  <script src="apps/paint.js"></script>
+  <script src="apps/explorer.js"></script>
+  <script src="apps/browser.js"></script>
+  <script src="apps/terminal.js"></script>
+  <script src="apps/clock.js"></script>
+  <script src="apps/camera.js"></script>
+  <script src="apps/mediaplayer.js"></script>
+  <script src="apps/photos.js"></script>
+  <script src="apps/about.js"></script>
+  <script src="games/minesweeper.js"></script>
+  <script src="games/solitaire.js"></script>
+  <script src="games/gta.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
