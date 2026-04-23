@@ -252,6 +252,7 @@
     file: `<svg viewBox="0 0 32 32"><path d="M8 3h12l6 6v18c0 2-1 3-3 3H8c-2 0-3-1-3-3V6c0-2 1-3 3-3z" fill="#fff" stroke="#aaa"/><path d="M20 3v6h6" fill="#ddd" stroke="#aaa"/></svg>`,
     img: `<svg viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2" fill="#fef3c7" stroke="#aaa"/><circle cx="11" cy="13" r="2" fill="#f59e0b"/><path d="M6 22l5-6 4 4 6-8 5 10" fill="none" stroke="#3a7bd5" stroke-width="2" stroke-linejoin="round"/></svg>`,
     recycle: `<svg viewBox="0 0 32 32"><path d="M8 10h16l-2 17a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2z" fill="#6fb1ff" stroke="#2563eb"/><rect x="11" y="4" width="10" height="4" rx="1" fill="#2563eb"/><path d="M13 15v9M16 15v9M19 15v9" stroke="#fff" stroke-width="1.5"/></svg>`,
+    snake: `<svg viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="22" rx="3" fill="#0b3b1a"/><g fill="#6aff9f"><rect x="7" y="9" width="4" height="4"/><rect x="11" y="9" width="4" height="4"/><rect x="15" y="9" width="4" height="4"/><rect x="15" y="13" width="4" height="4"/><rect x="15" y="17" width="4" height="4"/><rect x="19" y="17" width="4" height="4"/></g><rect x="23" y="9" width="4" height="4" fill="#ff5a5a"/></svg>`,
   };
 
   // ---------- toasts ----------
